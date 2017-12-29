@@ -107,17 +107,6 @@ img:active {
   background-color: #111111;
 }
 
-.menu .dropdown {
-  position: absolute;
-  display: inline-block;
-}
-
-.menu .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #333333;
-}
-
 .menu .show {
   display:block;
 }
