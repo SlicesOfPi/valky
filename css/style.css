@@ -9,8 +9,13 @@ body {
 	margin: 0;
 }
 
+h1, h2, h3, h4, h5 {
+	padding: 20px;
+	text-align: center;
+}
+
 a {
-	transition: color 0.5s ease;
+  transition: color 0.5s ease;
 	margin: 0px;
 }
 
@@ -47,15 +52,21 @@ li a {
 .banner {
 	background-position: center; 
 	background-image: url("../img/background.png");
-	padding-top: 300px;
-	padding-bottom: 300px;
+	background-attachment: fixed;
+	padding-top: 50vh;
+	padding-bottom: 50vh;
 }
 
 .splash-title {
 	text-align: center;
 	font-size: 36px;
 	font-family: 'Jura', sans-serif;
-	letter-spacing: 32px;
+	letter-spacing: 64px;
+	opacity: 0.03;
+	transition: all 2.5s ease;
+}
+
+.splash-title:hover {
 	opacity: 0.3;
 }
 
@@ -64,6 +75,7 @@ li a {
 	background-image: url("../img/art5.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
+	background-attachment: fixed;
 	height: 600px;
 }
 
@@ -72,13 +84,16 @@ li a {
 	background-image: url("../img/art6.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
+	background-attachment: fixed;
 	height: 600px;
 }
 
 .about {
+	height: 800px;
 	padding-top: 50px;
 	padding-left: 20px;
 	letter-spacing: 3px;
+	text-align: center;
 }
 
 .links {
@@ -96,9 +111,41 @@ li a {
 	height: auto;
 	padding: 5px;
 	filter: grayscale(100%);
-	transition: all 2s ease;
+	transition: all 1s linear;
 }
 
 .art img:hover {
 	filter: grayscale(0%);
+}
+
+.progress {
+	padding: 30px;
+	position: relative;
+	width: 1000px;
+	height: 30px;
+	margin: auto;
+	text-align: center;
+}
+
+.progress-text {
+	padding: 10px;
+	text-align: center;
+	line-height: 20px;
+	vertical-align: middle;
+	letter-spacing: 10px;
+}
+
+.progress-bar {
+	position: absolute;
+	background: gray;
+	width: 1000px;
+	height: 30px;
+}
+
+.progress-bar-fill {
+	position: absolute;
+	height: 30px;
+	background: hotpink;
+	line-height: 30px;
+	vertical-align: middle;
 }
