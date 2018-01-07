@@ -5,9 +5,9 @@
 
   <meta charset="UTF-8">
   <meta name="description" content="Portfolio">
-  <meta name="keywords" content="valk, valky, valkyrie, valkyrienyanko, discord, youtube, twitch">
-  <meta name="author" content="valkyrienyanko">
-	<meta name="description" content="Valks Portfolio">
+  <meta name="keywords" content="valk, valky, valkyrie, valkyrienyanko, discord, youtube, twitch"> <!-- To most search engines today, this is considered useless. However, it has next to no harm to add, and absolutely no reason to remove -->
+  <meta name="author" content="valkyrienyanko"> <!-- Same thing as above. This may help certain things like easybib.com and alike one would guess -->
+	<meta name="description" content="Valks Portfolio"> <!-- Meta tags have grown useless as HTML has become more and more forgiving and the web as a whole as matured --> 
 	<meta name="viewport"content="width=device-width, initial-scale=1.0">
 
   <link href="css/style.css" rel="stylesheet"  type="text/css">
@@ -18,15 +18,15 @@
 </head>
 
 
-<body>
+<body onscroll="checkPage();" >
 	<div class = "banner">
 		<div class = "splash-title">
-			<h1>valkyrienyanko</h1>
+			<h1>valkyrienyanko<!-- Please note that if you change the amount of characters in this you may expierence some slight turbulance. To make sure it all works, take the existing characters in your title phrase x2 then divide 100 by that. So in this case, 16*2=32 100/32 = 3.125. Then take that number, head over to the style sheet and replace the .banner font-size and line-spacing with both that number plus "vw" for viewwidth. End result here is 3.125vw--></h1>
 		</div>
 	</div>
 	
 	<div class = "links">
-		<ul>
+		<ul class="linkslist" id="linkslist">
 		  <li><a href="https://www.twitch.tv/valkyrienyanko" target="_blank">Twitch</a></li>
 			<li><a href="https://www.youtube.com/channel/UCUSirwg82M_eOs_G1btTpdw?view_as=subscriber" target="_blank">YouTube</a></li>
 			<li><a href="https://discord.gg/YtT7tcD" target="_blank">Discord</a></li>
@@ -47,15 +47,74 @@
 		<div class="progress">
 			<div class="progress-text">Development</div>
 			<div class = "progress-bar">
-				<div class = "progress-bar-fill" style="width:90%">90%</div>
+				<div class = "progress-bar-fill " id="ninetyPercent" style="">90%</div>
+				<noscript>
+					<style>
+						.ninetyPercent {
+							width:90%;
+						}
+						.eightyPercent {
+							width:80%;
+						}
+					</style>
+				</noscript>
 			</div>
 		</div>
 		<div class="progress">
 			<div class="progress-text">Art</div>
 			<div class = "progress-bar">
-				<div class = "progress-bar-fill" style="width:80%">80%</div>
+				<div class = "progress-bar-fill" id="eightyPercent">80%</div>
 			</div>
 		</div>
 	</div>
 	<div class="container-background"></div>
 </body>
+
+
+<script>
+var myElement = document.getElementById('ninetyPercent');
+var eleTwo = document.getElementById('eightyPercent');
+var eleThree = document.getElementById('linkslist');
+var elePos = getPosition(myElement);
+var elePos2 = getPosition(eleTwo);
+var elePos3 = getPosition(eleThree);
+
+
+function checkPage(){
+	var pageHeight = window.innerHeight;
+	var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+	doAllCheckElements();
+	function doAllCheckElements(){
+		if(scrollTop+(pageHeight-55)>=elePos){ // Minus 55 because it'll give some slack for you to fully see the bar first.
+			document.getElementById('ninetyPercent').style.width = "90%";
+		}
+		if(scrollTop+(pageHeight-55)>=elePos2){ // Minus 55 because it'll give some slack for you to fully see the bar first.
+			document.getElementById('eightyPercent').style.width = "80%";
+		}
+		if(scrollTop+(pageHeight-55)>=elePos3){ // Minus 55 because it'll give some slack for you to fully see the bar first.
+			var listElements = document.getElementsByTagName('li')
+			for(key in listElements){
+				var element = listElements[key];
+				element.style.animationPlayState = "running";
+			}
+		}
+	}
+	//console.log(scrollTop);
+}
+
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while(element) {
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+
+    return yPosition;
+}
+
+
+</script>
+
+</html>

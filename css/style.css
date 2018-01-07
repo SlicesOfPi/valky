@@ -1,9 +1,9 @@
 * {
-	margin: 0px;
+	margin: 0; /* Technically you are suppoed to use '0' instead of '0px', '0em', '0pt', etc. */
 }
 
 body {
-  background:rgb(60,60,60);
+  background:rgb(60,60,60); /* This fixes various issues with "leakage" in the background-photos that are viewable on mobile and various screen sizes */
   color:white;
   font-family: 'Inconsolata', sans-serif;
 	margin: 0;
@@ -20,24 +20,40 @@ a {
 }
 
 a:hover {
-	color: hotpink;
+	color: #ff69b4; /* Ommited hotpink for it's corresponding color-code in chrome. This guarentees that no change in the browser could change the color. This is just something I personally prefer isn't really *needed*. */
 }
 
 a:active {
   
 }
 
-ul {
+ul.linkslist { /*Be more specific with which UL. this is because if you decide to add ULs. */
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
 	background-color: #333333;
+	display: flex; /* This will enable us to stretch the elements over 100% of the list with ease. */
+	width: 100%;
+
 }
 
 li {
-  float: left;
+	animation: doContract 1s ease;
+	aninmation-fill-mode: forwards;
+	animation-play-state: paused;
+	float: left;
 	margin: 0px;
+
+}
+
+@keyframes doContract {
+	from {
+		margin-right: 100%;
+	}
+	to {
+		margin-right: 0;	
+	}
 }
 
 li a {
@@ -55,35 +71,54 @@ li a {
 	background-attachment: fixed;
 	padding-top: 50vh;
 	padding-bottom: 50vh;
+	background-size: cover; /* This prevents repeating the background which is.. kind of unsuited for the type of full-content background. You will see this impact on mobile devices and if you zoom out on the page. */
 }
 
 .splash-title {
 	text-align: center;
-	font-size: 36px;
+	font-size: 3.125vw; /* Doing this with the font-size and letter-spacing guarentees that instead of misfitting it will stretch to the proper screen size. */ 
 	font-family: 'Jura', sans-serif;
-	letter-spacing: 64px;
+	letter-spacing: 3.125vw;
 	opacity: 0.03;
 	transition: all 2.5s ease;
+	animation: doOpacity 1s linear;
+	animation-fill-mode: forwards;
+	/* Today most browsers (for a few years if not more) support this without the "prototype" prefix before them */
 }
 
+@keyframes doOpacity {
+
+	from {
+		opacity: 0.03;
+	}
+	to {
+		opacity: 0.3;
+	}
+}
+/* 
 .splash-title:hover {
 	opacity: 0.3;
 }
 
+*/
+/* Commented above because I am replacing it with a linear-animation. This is personal preferance, and I simply just like it to stay that way instead of mousing over then moving down and it's hard to see */
+
+
 .about-background {
+	background-size: cover; /* Fix some of the issues related to portrait views of the background. */
 	background-position: center;
 	background-image: url("../img/art5.png");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	
 	background-attachment: fixed;
 	height: 600px;
 }
 
 .container-background {
+	background-size: cover; /* Fix some of the issues related to portrait views of the background. */
 	background-position: center;
 	background-image: url("../img/art6.png");
 	background-repeat: no-repeat;
-	background-size: 100%;
 	background-attachment: fixed;
 	height: 600px;
 }
@@ -143,9 +178,12 @@ li a {
 }
 
 .progress-bar-fill {
+	transition: all 1s ease;
+	width: 0;
 	position: absolute;
 	height: 30px;
 	background: hotpink;
 	line-height: 30px;
 	vertical-align: middle;
 }
+
