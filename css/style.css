@@ -39,7 +39,7 @@ ul.linkslist { /*Be more specific with which UL. this is because if you decide t
 }
 
 li {
-	animation: doContract 1s ease;
+	animation: doContract 1.5s ease;
 	aninmation-fill-mode: forwards;
 	animation-play-state: paused;
 	float: left;
@@ -76,22 +76,37 @@ li a {
 
 .splash-title {
 	text-align: center;
-	font-size: 3.125vw; /* Doing this with the font-size and letter-spacing guarentees that instead of misfitting it will stretch to the proper screen size. */ 
+	font-size: 2.125vw; /* Doing this with the font-size and letter-spacing guarentees that instead of misfitting it will stretch to the proper screen size. */ 
 	font-family: 'Jura', sans-serif;
-	letter-spacing: 3.125vw;
-	opacity: 0.03;
-	transition: all 2.5s ease;
-	animation: doOpacity 1s linear;
+	letter-spacing: 2.125vw;
+	transition: all 2.5s ease; /* Slowed it down, was a little too fast */
+	animation: doOpacity 1s linear, doFontSize 0.5s ease-out; /* We can do 1000ms and 500ms or 1s and 0.5s but not either/or. It looks ugly... */
 	animation-fill-mode: forwards;
+	
+
 	/* Today most browsers (for a few years if not more) support this without the "prototype" prefix before them */
+}
+.splash-title h1 {
+	letter-spacing: 3.125vw;
+}
+
+@keyframes doFontSize {
+	from {
+		font-size: 2.125vw;
+	}
+	to {
+		font-size: 1.125vw;
+	}
 }
 
 @keyframes doOpacity {
 
 	from {
+		filter: blur(15px);
 		opacity: 0.03;
 	}
 	to {
+		filter: blur(0);
 		opacity: 0.3;
 	}
 }
@@ -109,7 +124,6 @@ li a {
 	background-position: center;
 	background-image: url("../img/art5.png");
 	background-repeat: no-repeat;
-	
 	background-attachment: fixed;
 	height: 600px;
 }
@@ -178,7 +192,7 @@ li a {
 }
 
 .progress-bar-fill {
-	transition: all 1s ease;
+	transition: all 2s ease; /* More appealing to the eye when its slow. */
 	width: 0;
 	position: absolute;
 	height: 30px;
